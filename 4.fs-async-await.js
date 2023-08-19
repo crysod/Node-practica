@@ -1,16 +1,21 @@
-const fs = require("node:fs/promises");
+const { readFile } = require("node:fs/promises");
 
-console.log('Leyendo el primer archivo')
+(
+    //IIFE -> Imnmediatly Invoked Function Expression
+    async()=>{
+        console.log('Leyendo el primer archivo')
 
-fs.readFile('./archivo.txt', 'utf8')
-    .then(text =>{
+        //readFile('./archivo.txt', 'utf8')
+        const text = await readFile('./archivo.txt', 'utf8')
         console.log('Primer Texto',text)
-    })
 
-console.log('Haciendo cosas intermedias')
-console.log('Leyendo el segundo archivo')
+        console.log('---------------------------------------')
+        console.log('Haciendo cosas intermedias')
+        console.log('---------------------------------------')
 
-fs.readFile('./archivo2.txt', 'utf8')
-    .then(text =>{
-        console.log(text)
-    })
+        console.log('Leyendo el segundo archivo')
+
+        const segundoText = await readFile('./archivo2.txt', 'utf8')
+        console.log('Segundo texto: ', segundoText)
+    }
+)()
